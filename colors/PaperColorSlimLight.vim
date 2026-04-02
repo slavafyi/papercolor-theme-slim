@@ -46,6 +46,8 @@ hi Normal                   guifg=#444444 guibg=#eeeeee gui=nocombine,NONE
 hi NormalNC                 guifg=#444444 guibg=NONE    gui=nocombine,NONE
 hi Pmenu                    guifg=#444444 guibg=#e4e4e4 gui=NONE
 hi PmenuSel                 guifg=#444444 guibg=#c6c6c6 gui=NONE
+hi PmenuSbar                guifg=NONE    guibg=#e4e4e4 gui=NONE
+hi PmenuThumb               guifg=NONE    guibg=#c6c6c6 gui=NONE
 hi Question                 guifg=#d70087 guibg=NONE    gui=NONE
 hi Search                   guifg=#444444 guibg=#e4e4e4 gui=NONE
 hi SignColumn               guifg=#008700 guibg=NONE    gui=NONE
@@ -115,6 +117,7 @@ hi DiagnosticUnderlineWarn  guifg=NONE    guibg=NONE    gui=undercurl
 hi DiagnosticUnderlineInfo  guifg=NONE    guibg=NONE    gui=undercurl
 hi DiagnosticUnderlineHint  guifg=NONE    guibg=NONE    gui=undercurl
 hi DiagnosticUnderlineOk    guifg=NONE    guibg=NONE    gui=undercurl
+hi DiagnosticDeprecated     guifg=NONE    guibg=NONE    gui=strikethrough guisp=#af0000
 " html sections
 hi htmlH1                   guifg=#008700 guibg=NONE    gui=bold
 hi htmlH2                   guifg=#0087af guibg=NONE    gui=bold
@@ -140,21 +143,119 @@ hi clear QuickFixLine
 hi clear NormalFloat
 hi clear FloatTitle
 hi clear FloatFooter
+hi clear lCursor
+hi clear WinBar
+hi clear WinBarNC
+hi clear FloatBorder
+hi clear FloatShadow
+hi clear FloatShadowThrough
+hi clear PmenuMatch
+hi clear PmenuMatchSel
+hi clear PmenuBorder
+hi clear PmenuShadow
+hi clear PmenuShadowThrough
+hi clear ComplMatchIns
+hi clear ComplHint
+hi clear ComplHintMore
+hi clear MsgArea
+hi clear MsgSeparator
+hi clear OkMsg
+hi clear StderrMsg
+hi clear StdoutMsg
+hi clear StatusLineTerm
+hi clear StatusLineTermNC
+hi clear DiffTextAdd
+hi clear LspInlayHint
+hi clear LspCodeLens
+hi clear LspCodeLensSeparator
+hi clear LspSignatureActiveParameter
+hi clear SnippetTabstopActive
+hi clear RedrawDebugNormal
+hi clear RedrawDebugClear
+hi clear RedrawDebugComposed
+hi clear RedrawDebugRecompose
+hi clear @constant.macro
+hi clear @string.regexp
+hi clear @keyword.function
+hi clear @keyword.coroutine
+hi clear @keyword.import
+hi clear @keyword.type
+hi clear @keyword.modifier
+hi clear @keyword.debug
+hi clear @keyword.conditional.ternary
+hi clear @punctuation.delimiter
+hi clear @punctuation.bracket
+hi clear @comment.documentation
+hi clear @markup.quote
+hi clear @markup.link.label
+hi clear @markup.link.url
+hi clear @markup.underline
+hi clear @markup.strikethrough
+hi clear @markup.list.checked
+hi clear @markup.list.unchecked
+hi clear @type.qualifier
+hi clear @lsp.type.class
+hi clear @lsp.type.decorator
+hi clear @lsp.type.event
+hi clear @lsp.type.modifier
+hi clear @lsp.type.regexp
+hi clear @lsp.type.string
+hi clear @lsp.type.struct
+hi clear @lsp.type.type
+hi clear @lsp.mod.abstract
+hi clear @lsp.mod.async
+hi clear @lsp.mod.defaultLibrary
+hi clear @lsp.mod.deprecated
+hi clear @lsp.mod.documentation
+hi clear @lsp.mod.readonly
+hi clear @lsp.mod.static
 " built-in
+hi link lCursor                                Cursor
 hi link NormalFloat                            Normal
 hi link FloatTitle                             Title
 hi link FloatFooter                            htmlItalic
+hi link WinBar                                 StatusLine
+hi link WinBarNC                               StatusLineNC
 hi link FoldColumn                             LineNr
+hi link FloatBorder                            WinSeparator
+hi FloatShadow                                 guifg=NONE    guibg=#444444 gui=NONE blend=80
+hi FloatShadowThrough                          guifg=NONE    guibg=#444444 gui=NONE blend=100
 hi link Added                                  DiffAdd
 hi link Changed                                DiffChange
 hi link Removed                                DiffDelete
 hi link NonText                                Comment
 hi link QuickFixLine                           CursorLine
+hi link PmenuMatch                             Special
+hi link PmenuMatchSel                          Special
+hi link PmenuBorder                            FloatBorder
+hi link PmenuShadow                            FloatShadow
+hi link PmenuShadowThrough                     FloatShadowThrough
+hi link ComplMatchIns                          Search
+hi link ComplHint                              NonText
+hi link ComplHintMore                          MoreMsg
+hi link MsgArea                                Normal
+hi link MsgSeparator                           StatusLine
+hi link OkMsg                                  DiagnosticOk
+hi link StderrMsg                              ErrorMsg
+hi link StdoutMsg                              Normal
+hi link StatusLineTerm                         StatusLine
+hi link StatusLineTermNC                       StatusLineNC
+hi link DiffTextAdd                            DiffText
+hi link LspInlayHint                           NonText
+hi link LspCodeLens                            NonText
+hi link LspCodeLensSeparator                   LspCodeLens
+hi link LspSignatureActiveParameter            Visual
+hi link SnippetTabstopActive                   SnippetTabstop
+hi RedrawDebugNormal                           guifg=NONE    guibg=NONE    gui=reverse
+hi RedrawDebugClear                            guifg=NONE    guibg=#c8e0c8 gui=NONE
+hi RedrawDebugComposed                         guifg=NONE    guibg=#c8dddd gui=NONE
+hi RedrawDebugRecompose                        guifg=NONE    guibg=#e0c8c8 gui=NONE
 hi link LspReferenceText                       Underlined
 hi link LspReferenceRead                       Underlined
 hi link LspReferenceWrite                      Underlined
 hi link LspReferenceTarget                     Underlined
 " treesitter-highlight-groups
+hi link @constant.macro                        Define
 hi link @attribute                             Label
 hi link @attribute.builtin                     NONE
 hi link @constant.builtin                      Boolean
@@ -169,13 +270,23 @@ hi link @function.macro                        Macro
 hi link @function.method                       Function
 hi link @function.method.builtin               Function
 hi link @function.method.call                  Function
+hi link @string.regexp                         SpecialChar
+hi link @keyword.function                      Keyword
+hi link @keyword.coroutine                     Keyword
 hi link @keyword.conditional                   Conditional
+hi link @keyword.conditional.ternary           Operator
 hi link @keyword.directive                     Conditional
 hi link @keyword.directive.define              Define
+hi link @keyword.import                        Include
+hi link @keyword.type                          Structure
+hi link @keyword.modifier                      StorageClass
+hi link @keyword.debug                         Debug
 hi link @keyword.exception                     Exception
 hi link @keyword.operator                      Operator
 hi link @keyword.repeat                        Repeat
 hi link @keyword.return                        Conditional
+hi link @punctuation.delimiter                 Delimiter
+hi link @punctuation.bracket                   Delimiter
 hi link @markup.heading                        Title
 hi link @markup.heading.1                      htmlH1
 hi link @markup.heading.2                      htmlH2
@@ -185,15 +296,23 @@ hi link @markup.heading.5                      htmlH5
 hi link @markup.heading.6                      htmlH6
 hi link @markup.italic                         htmlItalic
 hi link @markup.link                           Label
+hi link @markup.link.label                     Label
+hi link @markup.link.url                       NONE
 hi link @markup.list                           Delimiter
+hi link @markup.list.checked                   @markup.list
+hi link @markup.list.unchecked                 @markup.list
 hi link @markup.literal                        String
+hi link @markup.quote                          htmlItalic
 hi link @markup.raw                            String
 hi link @markup.raw.block                      NormalNC
+hi link @markup.underline                      Underlined
+hi @markup.strikethrough                       guifg=NONE    guibg=NONE    gui=strikethrough
 hi link @markup.strong                         htmlBold
 hi link @module                                StorageClass
 hi link @module.builtin                        StorageClass
 hi link @namespace                             StorageClass
 hi link @none                                  Normal
+hi link @comment.documentation                 Comment
 hi link @property                              Identifier
 hi link @string.escape                         Special
 hi link @string.special.path                   NONE
@@ -203,39 +322,56 @@ hi link @tag.delimiter                         Operator
 hi link @type                                  Type
 hi link @type.builtin                          Type
 hi link @type.definition                       Type
+hi link @type.qualifier                        StorageClass
 hi link @variable                              NormalNC
 hi link @variable.builtin                      htmlBold
 hi link @variable.member                       Identifier
 hi link @variable.parameter                    NormalNC
+hi link @markup.quote.markdown                 htmlItalic
+hi link @variable.parameter.builtin            Special
 " nvim-treesitter matchers (lang-specific)
 hi link @constructor.lua                       NONE
 hi link @function.macro.vim                    Keyword
-hi link @markup.quote.markdown                 htmlItalic
 hi link @tag.builtin.tsx                       Tag
 hi link @tag.tsx                               Tag
 hi link @variable.vim                          NONE
 " lsp.type.<id>
+hi link @lsp.type.class                        @type
 hi link @lsp.type.boolean                      @boolean
 hi link @lsp.type.builtinType                  @type.builtin
 hi link @lsp.type.comment                      @comment
+hi link @lsp.type.decorator                    @attribute
 hi link @lsp.type.enum                         @type
 hi link @lsp.type.enumMember                   @boolean
 hi link @lsp.type.escapeSequence               @string.escape
+hi link @lsp.type.event                        @property
 hi link @lsp.type.formatSpecifier              @punctuation.special
 hi link @lsp.type.function                     @function.call
 hi link @lsp.type.interface                    @type
 hi link @lsp.type.keyword                      @keyword
 hi link @lsp.type.macro                        Macro
 hi link @lsp.type.method                       @function.method.call
+hi link @lsp.type.modifier                     @type.qualifier
 hi link @lsp.type.namespace                    @namespace
 hi link @lsp.type.number                       @number
 hi link @lsp.type.operator                     @operator
 hi link @lsp.type.parameter                    @variable.parameter
 hi link @lsp.type.property                     @property
+hi link @lsp.type.regexp                       @string.regexp
+hi link @lsp.type.string                       String
+hi link @lsp.type.struct                       @type
+hi link @lsp.type.type                         @type
 hi link @lsp.type.typeAlias                    pcsClassCombine
 hi link @lsp.type.typeParameter                pcsClassCombine
 hi link @lsp.type.unresolvedReference          @comment.error
 hi link @lsp.type.variable                     NONE
+hi link @lsp.mod.abstract                      StorageClass
+hi link @lsp.mod.async                         Keyword
+hi link @lsp.mod.defaultLibrary                Special
+hi link @lsp.mod.deprecated                    DiagnosticDeprecated
+hi link @lsp.mod.documentation                 Comment
+hi link @lsp.mod.readonly                      Constant
+hi link @lsp.mod.static                        StorageClass
 " lsp (lang-specific)
 hi link @lsp.type.class.markdown               NONE
 hi link @lsp.type.enumMember.markdown          NONE
