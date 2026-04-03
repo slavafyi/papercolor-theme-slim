@@ -33,6 +33,9 @@ hi DiffAdd                  guifg=#d0d0d0 guibg=#183300 gui=NONE
 hi DiffChange               guifg=#d0d0d0 guibg=#183939 gui=NONE
 hi DiffDelete               guifg=#d0d0d0 guibg=#550d0d gui=NONE
 hi DiffText                 guifg=#d0d0d0 guibg=#004f4f gui=NONE
+hi GitSignsAdd              guifg=#5faf00 guibg=NONE    gui=NONE
+hi GitSignsChange           guifg=#ff5faf guibg=NONE    gui=NONE
+hi GitSignsDelete           guifg=#af005f guibg=NONE    gui=NONE
 hi Directory                guifg=#5fafd7 guibg=NONE    gui=bold
 hi EndOfBuffer              guifg=#585858 guibg=NONE    gui=NONE
 hi ErrorMsg                 guifg=#af005f guibg=#5f0000 gui=NONE
